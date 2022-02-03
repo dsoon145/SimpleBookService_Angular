@@ -1,0 +1,48 @@
+<form [formGroup]="getBookForm">
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Existing Book ID</mat-label>
+        <input matInput placeholder="ID" type="number" formControlName="bookIDInput" required>
+      </mat-form-field>
+    </p>
+    <button (click)="findBook()" type="submit" color="primary" mat-raised-button>
+        Find
+    </button>
+</form>
+
+
+<form [formGroup]="updateBookForm" *ngIf="bookSelected">
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Book Name</mat-label>
+        <input matInput placeholder="e.g. Lord of the Rings" type="text" formControlName="bookNameInput" required>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Author</mat-label>
+        <input matInput placeholder="e.g. J R Tolkien" type="text" formControlName="bookAuthorInput" required>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Category</mat-label>
+        <mat-select formControlName="bookCategoryInput" required>
+          <mat-option value="Thriller">Thriller</mat-option>
+          <mat-option value="Adventure">Adventure</mat-option>
+          <mat-option value="Comedy">Comedy</mat-option>
+        </mat-select>    
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
+        <textarea matInput placeholder="Ex. It makes me feel..." formControlName="bookDescInput" required></textarea>
+      </mat-form-field>
+    </p>
+    <button (click)="updateBook()" type="submit" color="primary" [disabled]="!updateBookForm.valid" mat-raised-button>
+      Submit
+    </button>
+  </form>
+    
+  <h3>{{bookAlert}}</h3>
